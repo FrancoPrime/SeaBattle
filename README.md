@@ -2,7 +2,7 @@
 
 # Sea Battle
 
-Implementación del famoso juego batalla naval
+Implementación del famoso juego batalla naval.
 
 ## Aplicación
 
