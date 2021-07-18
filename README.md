@@ -1,4 +1,4 @@
-![seabattle](https://github.com/FrancoPrime/SeaBattle/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/FrancoPrime/SeaBattle/branch/master/graph/badge.svg)](https://codecov.io/gh/FrancoPrime/SeaBattle)
+![seabattle](https://github.com/FrancoPrime/SeaBattle/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/FrancoPrime/SeaBattle/branch/main/graph/badge.svg)](https://codecov.io/gh/FrancoPrime/SeaBattle)
 
 # Sea Battle
 
