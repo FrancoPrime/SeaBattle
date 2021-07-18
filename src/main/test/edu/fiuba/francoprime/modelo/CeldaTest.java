@@ -9,9 +9,19 @@ public class CeldaTest {
     @Test
     public void test01seCreaUnaCeldaConBarcoYCuandoSeLaTocaEllaTocaAlBarco(){
         Barco barco = mock(Barco.class);
-        CeldaConBarco celda = new CeldaConBarco(barco);
+        Celda celda = new Celda();
+        celda.asignarABarco(barco);
         celda.tocarCelda();
         verify(barco, times(1)).tocar();
+    }
+
+    @Test
+    public void test02seIntentaTocarUnaCeldaDosVecesYLanzaExcepcion(){
+        Barco barco = mock(Barco.class);
+        Celda celda = new Celda();
+        celda.asignarABarco(barco);
+        celda.tocarCelda();
+        assertThrows(CeldaYaTocadaException.class, celda::tocarCelda);
     }
 
 }

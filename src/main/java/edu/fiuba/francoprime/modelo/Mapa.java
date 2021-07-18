@@ -25,7 +25,9 @@ public class Mapa {
     }
 
     public void realizarJugada(Coordenada coordenada){
-
+        int fila = coordenada.getFila();
+        int columna = coordenada.getColumna();
+        this.celdas[fila][columna].tocarCelda();
     }
 
 }

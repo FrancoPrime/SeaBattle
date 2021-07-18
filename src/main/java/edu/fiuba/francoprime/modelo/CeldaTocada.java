@@ -1,8 +1,9 @@
 package edu.fiuba.francoprime.modelo;
 
-public class CeldaVisible implements Visibilidad{
+public class CeldaTocada implements Visibilidad{
 
     public boolean estaTocada() {
-        return false;
+        return true;
     }
+
 }

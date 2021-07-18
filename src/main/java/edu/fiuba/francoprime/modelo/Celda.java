@@ -11,7 +11,10 @@ public class Celda {
     }
 
     void tocarCelda(){
+        if(this.visibilidad.estaTocada())
+            throw new CeldaYaTocadaException();
         this.contenido.tocarCelda();
+        this.visibilidad = new CeldaTocada();
     }
 
     void asignarABarco(Barco barco){
