@@ -21,4 +21,11 @@ public class BarcoTest {
         assertTrue(barco.estaDestruido());
     }
 
+    @Test
+    public void test03seIntentaTocarUnBarcoDestruidoYLanzaExcepcion(){
+        Barco barco = new Barco(1);
+        barco.tocar();
+        assertThrows(BarcoYaDestuidoException.class, barco::tocar);
+    }
+
 }
