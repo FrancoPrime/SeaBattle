@@ -1,6 +1,6 @@
 package edu.fiuba.francoprime.modelo;
 
-public class CeldaConBarco implements Celda{
+public class CeldaConBarco implements ContenidoCelda{
     Barco barcoContenido;
 
     public CeldaConBarco(Barco barco){
@@ -9,5 +9,9 @@ public class CeldaConBarco implements Celda{
 
     public void tocarCelda() {
         this.barcoContenido.tocar();
+    }
+
+    public boolean esAsignable(){
+        return false;
     }
 }
