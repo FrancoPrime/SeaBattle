@@ -72,7 +72,7 @@ public class MapaTest {
         Coordenada coordenada2 = new Coordenada(2,2);
         coordenadas.add(coordenada1);
         coordenadas.add(coordenada2);
-        assertThrows(CeldaOcupadaException.class, () -> {mapa.agregarBarco(barco, coordenadas);});
+        assertThrows(CeldaOcupadaException.class, () -> mapa.agregarBarco(barco, coordenadas));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class MapaTest {
         Coordenada coordenada1 = new Coordenada(2,2);
         coordenadas.add(coordenada1);
         mapa.agregarBarco(unBarco, coordenadas);
-        assertThrows(CeldaOcupadaException.class, () -> {mapa.agregarBarco(otroBarco, coordenadas);});
+        assertThrows(CeldaOcupadaException.class, () -> mapa.agregarBarco(otroBarco, coordenadas));
     }
 
 }
