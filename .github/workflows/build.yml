@@ -27,6 +27,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: target/tp2-*.jar
+          files: target/seabattle.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
