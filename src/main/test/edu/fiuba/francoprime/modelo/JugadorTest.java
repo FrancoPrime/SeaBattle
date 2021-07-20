@@ -13,10 +13,7 @@ public class JugadorTest {
     @Test
     public void test01elJugadorRealizaLaJugadaTocarCorrectamente(){
         ControladorJugada controlador = mock(ControladorJugada.class);
-        ArrayList<Object> jugada = new ArrayList<>();
-        jugada.add(ControladorJugada.TOCAR);
-        jugada.add(2);
-        jugada.add(2);
+        JugadaTocar jugada = new JugadaTocar(2,2);
         when(controlador.obtenerJugada()).thenReturn(jugada);
         Mapa mapa = new Mapa();
         ArrayList<Coordenada> listaCoordenadas = new ArrayList<>();

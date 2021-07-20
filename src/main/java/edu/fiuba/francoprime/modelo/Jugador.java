@@ -23,13 +23,8 @@ public class Jugador {
     }
 
     public void realizarJugada(){
-        ArrayList<Object> jugada = this.controlador.obtenerJugada();
-        if((int) jugada.get(0) == ControladorJugada.TOCAR){
-            int fila = (int) jugada.get(1);
-            int columna = (int) jugada.get(2);
-            Coordenada coordenada = new Coordenada(fila, columna);
-            this.mapaContrincante.realizarJugada(coordenada);
-        }
+        Jugada jugada = this.controlador.obtenerJugada();
+        jugada.ejecutar(this.mapaContrincante);
     }
 
 }

@@ -17,7 +17,7 @@ public class MapaTest {
         Coordenada coordenada1 = new Coordenada(2,2);
         coordenadas.add(coordenada1);
         mapa.agregarBarco(barco, coordenadas);
-        mapa.realizarJugada(coordenada1);
+        mapa.realizarJugada(2,2);
         verify(barco, times(1)).tocar();
     }
 
@@ -37,10 +37,10 @@ public class MapaTest {
         coordenadas.add(coordenada4);
         coordenadas.add(coordenada5);
         mapa.agregarBarco(barco, coordenadas);
-        mapa.realizarJugada(coordenada1);
-        mapa.realizarJugada(coordenada2);
-        mapa.realizarJugada(coordenada3);
-        mapa.realizarJugada(coordenada4);
+        mapa.realizarJugada(2,2);
+        mapa.realizarJugada(3,2);
+        mapa.realizarJugada(4,2);
+        mapa.realizarJugada(5,2);
         verify(barco, times(4)).tocar();
     }
 
@@ -57,9 +57,9 @@ public class MapaTest {
         coordenadas.add(coordenada1);
         coordenadas.add(coordenada2);
         mapa.agregarBarco(barco, coordenadas);
-        mapa.realizarJugada(coordenada3);
-        mapa.realizarJugada(coordenada4);
-        mapa.realizarJugada(coordenada5);
+        mapa.realizarJugada(4,2);
+        mapa.realizarJugada(1,2);
+        mapa.realizarJugada(2,3);
         verify(barco, times(0)).tocar();
     }
 
