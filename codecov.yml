@@ -1,0 +1,7 @@
+ignore:
+  - "src/main/java/edu/fiuba/francoprime/controlador/*"
+  - "src/main/java/edu/fiuba/francoprime/infraestructura/*"
+  - "src/main/java/edu/fiuba/francoprime/vista/*"
+  - "src/main/java/edu/fiuba/francoprime/App.java"
+  - "src/main/java/edu/fiuba/francoprime/Main.java"
+  - "src/main/java/edu/fiuba/francoprime/SystemInfo.java"

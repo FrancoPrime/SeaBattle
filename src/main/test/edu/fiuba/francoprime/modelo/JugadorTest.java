@@ -1,6 +1,5 @@
 package edu.fiuba.francoprime.modelo;
 
-import edu.fiuba.francoprime.controlador.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,18 +11,16 @@ public class JugadorTest {
 
     @Test
     public void test01elJugadorRealizaLaJugadaTocarCorrectamente(){
-        ControladorJugada controlador = mock(ControladorJugada.class);
         JugadaTocar jugada = new JugadaTocar(2,2);
-        when(controlador.obtenerJugada()).thenReturn(jugada);
         Mapa mapa = new Mapa();
         ArrayList<Coordenada> listaCoordenadas = new ArrayList<>();
         Coordenada coordenada = new Coordenada(2,2);
         listaCoordenadas.add(coordenada);
         Barco barco = new Barco(1);
         mapa.agregarBarco(barco, listaCoordenadas);
-        Jugador jugador = new Jugador(controlador);
+        Jugador jugador = new Jugador();
         jugador.asignarMapaDelContrincante(mapa);
-        jugador.realizarJugada();
+        jugador.realizarJugada(jugada);
         assertTrue(barco.estaDestruido());
     }
 

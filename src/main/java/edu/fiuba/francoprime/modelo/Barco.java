@@ -17,4 +17,8 @@ public class Barco {
     public boolean estaDestruido(){
         return (this.espaciosSinTocar == 0);
     }
+
+    public int tamanio(){
+        return this.espaciosSinTocar;
+    }
 }

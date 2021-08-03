@@ -51,9 +51,6 @@ public class MapaTest {
         ArrayList<Coordenada> coordenadas = new ArrayList<>();
         Coordenada coordenada1 = new Coordenada(2,2);
         Coordenada coordenada2 = new Coordenada(3,2);
-        Coordenada coordenada3 = new Coordenada(4,2);
-        Coordenada coordenada4 = new Coordenada(1,2);
-        Coordenada coordenada5 = new Coordenada(2,3);
         coordenadas.add(coordenada1);
         coordenadas.add(coordenada2);
         mapa.agregarBarco(barco, coordenadas);
@@ -85,6 +82,18 @@ public class MapaTest {
         coordenadas.add(coordenada1);
         mapa.agregarBarco(unBarco, coordenadas);
         assertThrows(CeldaOcupadaException.class, () -> mapa.agregarBarco(otroBarco, coordenadas));
+    }
+
+    @Test
+    public void test06seColocaUnBarcoEnElMapaYTieneLasCoordenadasEsperadas(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(3);
+        mapa.barcoEnColocacion(barco, 0, 0, Mapa.HORIZONTAL);
+        mapa.finalizarColocacion();
+        mapa.realizarJugada(0,0);
+        mapa.realizarJugada(0,1);
+        mapa.realizarJugada(0,2);
+        assertTrue(barco.estaDestruido());
     }
 
 }

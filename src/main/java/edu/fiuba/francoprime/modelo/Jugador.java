@@ -1,17 +1,13 @@
 package edu.fiuba.francoprime.modelo;
 
-import edu.fiuba.francoprime.controlador.ControladorJugada;
-
 import java.util.ArrayList;
 
 public class Jugador {
 
     ArrayList<Barco> barcos;
     Mapa mapaContrincante;
-    ControladorJugada controlador;
 
-    public Jugador(ControladorJugada controlador){
-        this.controlador = controlador;
+    public Jugador(){
     }
 
     public Mapa crearMapa(){
@@ -22,8 +18,7 @@ public class Jugador {
         this.mapaContrincante = mapa;
     }
 
-    public void realizarJugada(){
-        Jugada jugada = this.controlador.obtenerJugada();
+    public void realizarJugada(Jugada jugada){
         jugada.ejecutar(this.mapaContrincante);
     }
 
