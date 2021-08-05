@@ -89,14 +89,77 @@ public class MapaTest {
     }
 
     @Test
-    public void test06seColocaUnBarcoEnElMapaYTieneLasCoordenadasEsperadas(){
+    public void test06seColocaUnBarcoHorizontalmenteEnElMapaYTieneLasCoordenadasEsperadas(){
         Mapa mapa = new Mapa();
         Barco barco = new Barco(3);
         mapa.establecerBarcoEnColocacion(barco);
-        mapa.coordenadasBarcoEnColocacion(0, 0, Mapa.HORIZONTAL);
+        mapa.coordenadasBarcoEnColocacion(0, 7, Mapa.HORIZONTAL);
+        mapa.finalizarColocacion();
+        mapa.realizarJugada(0,7);
+        mapa.realizarJugada(0,8);
+        assertFalse(barco.estaDestruido());
+        mapa.realizarJugada(0,9);
+        assertTrue(barco.estaDestruido());
+    }
+
+    @Test
+    public void test07seIntentaColocarUnBarcoHorizontalmenteEnElMapaEnPosicionIncorrectaYLoColocaAlPrincipio(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(3);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(0, 8, Mapa.HORIZONTAL);
         mapa.finalizarColocacion();
         mapa.realizarJugada(0,0);
         mapa.realizarJugada(0,1);
+        assertFalse(barco.estaDestruido());
+        mapa.realizarJugada(0,2);
+        assertTrue(barco.estaDestruido());
+    }
+
+    @Test
+    public void test08seIntentaColocarUnBarcoVerticalmenteEnElMapaYSeColocaEnLasCasillasEsperadas(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(0, 8, Mapa.VERTICAL);
+        mapa.finalizarColocacion();
+        mapa.realizarJugada(0,8);
+        mapa.realizarJugada(1,8);
+        mapa.realizarJugada(2,8);
+        assertFalse(barco.estaDestruido());
+        mapa.realizarJugada(3,8);
+        assertTrue(barco.estaDestruido());
+    }
+
+    @Test
+    public void test09seIntentaColocarUnBarcoVerticalmenteEnElMapaEnElMapaEnPosicionIncorrectaYLoColocaAlPrincipio(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(7, 8, Mapa.VERTICAL);
+        mapa.finalizarColocacion();
+        mapa.realizarJugada(0,0);
+        mapa.realizarJugada(1,0);
+        mapa.realizarJugada(2,0);
+        assertFalse(barco.estaDestruido());
+        mapa.realizarJugada(3,0);
+        assertTrue(barco.estaDestruido());
+    }
+
+    @Test
+    public void test09seIntentaColocarUnBarcoSolapandoAOtroYaColocadoYSeColocaEnLaPrimerPosicionValidaHorizontal(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(7, 2, Mapa.HORIZONTAL);
+        mapa.finalizarColocacion();
+        barco = new Barco(3);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(5, 2, Mapa.VERTICAL);
+        mapa.finalizarColocacion();
+        mapa.realizarJugada(0,0);
+        mapa.realizarJugada(0,1);
+        assertFalse(barco.estaDestruido());
         mapa.realizarJugada(0,2);
         assertTrue(barco.estaDestruido());
     }
