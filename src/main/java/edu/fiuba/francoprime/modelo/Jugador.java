@@ -4,14 +4,19 @@ import java.util.ArrayList;
 
 public class Jugador {
 
-    ArrayList<Barco> barcos;
-    Mapa mapaContrincante;
+    private ArrayList<Barco> barcos;
+    private Mapa mapaContrincante;
+    private int identificador;
+    private static int identificadorJugadores = 1;
 
     public Jugador(){
+        this.identificador = identificadorJugadores;
+        identificadorJugadores++;
+        this.mapaContrincante = new Mapa();
     }
 
-    public Mapa crearMapa(){
-        return new Mapa();
+    public static void reiniciarClase(){
+        identificadorJugadores = 1;
     }
 
     public void asignarMapaDelContrincante(Mapa mapa){
@@ -20,6 +25,10 @@ public class Jugador {
 
     public void realizarJugada(Jugada jugada){
         jugada.ejecutar(this.mapaContrincante);
+    }
+
+    public int identificador(){
+        return this.identificador;
     }
 
 }

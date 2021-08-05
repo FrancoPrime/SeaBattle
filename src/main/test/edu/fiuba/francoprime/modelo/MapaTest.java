@@ -88,7 +88,8 @@ public class MapaTest {
     public void test06seColocaUnBarcoEnElMapaYTieneLasCoordenadasEsperadas(){
         Mapa mapa = new Mapa();
         Barco barco = new Barco(3);
-        mapa.barcoEnColocacion(barco, 0, 0, Mapa.HORIZONTAL);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(0, 0, Mapa.HORIZONTAL);
         mapa.finalizarColocacion();
         mapa.realizarJugada(0,0);
         mapa.realizarJugada(0,1);

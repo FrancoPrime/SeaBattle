@@ -32,17 +32,20 @@ public class Mapa {
         this.celdas[fila][columna].tocarCelda();
     }
 
-    public void barcoEnColocacion(Barco barco, int posFila, int posColumna, int rotacion){
+    public void establecerBarcoEnColocacion(Barco barco){
         this.barcoEnColocacion = barco;
+    }
+
+    public void coordenadasBarcoEnColocacion(int posFila, int posColumna, int rotacion){
         this.coordenadasBarcoEnColocacion = new ArrayList<>();
-        int tamanioBarco = barco.tamanio();
+        int tamanioBarco = this.barcoEnColocacion.tamanio();
         if(rotacion == Mapa.HORIZONTAL){
-            for(int i=posColumna; i<tamanioBarco;i++){
-                this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila, i));
+            for(int i=0; i<tamanioBarco;i++){
+                this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila, posColumna+i));
             }
         }else{
-            for(int i=posFila; i<tamanioBarco;i++){
-                this.coordenadasBarcoEnColocacion.add(new Coordenada(i, posColumna));
+            for(int i=0; i<tamanioBarco;i++){
+                this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila+i, posColumna));
             }
         }
     }
