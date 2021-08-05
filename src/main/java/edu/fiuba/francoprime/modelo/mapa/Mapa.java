@@ -39,16 +39,85 @@ public class Mapa {
     }
 
     public void coordenadasBarcoEnColocacion(int posFila, int posColumna, int rotacion){
-        this.coordenadasBarcoEnColocacion = new ArrayList<>();
         int tamanioBarco = this.barcoEnColocacion.tamanio();
         if(rotacion == Mapa.HORIZONTAL){
-            for(int i=0; i<tamanioBarco;i++){
-                this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila, posColumna+i));
-            }
+            colocarBarcoHorizontalmente(posFila, posColumna, tamanioBarco);
         }else{
-            for(int i=0; i<tamanioBarco;i++){
-                this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila+i, posColumna));
+            colocarBarcoVerticalmente(posFila, posColumna, tamanioBarco);
+        }
+        if(barcoEnColocacionPosicionInvalida())
+            asignarBarcoAPrimeraPosicionValidaHorizontal(tamanioBarco);
+    }
+
+    private void colocarBarcoVerticalmente(int posFila, int posColumna, int tamanioBarco) {
+        if(posFila+tamanioBarco > Mapa.MAXIMAS_FILAS_COLUMNAS){
+            asignarBarcoAPrimeraPosicionValidaVertical(tamanioBarco);
+            return;
+        }
+        asignarCoordenadasDeColocacionVerticalmente(posFila, posColumna, tamanioBarco);
+    }
+
+    private void asignarCoordenadasDeColocacionVerticalmente(int posFila, int posColumna, int tamanioBarco) {
+        this.coordenadasBarcoEnColocacion = new ArrayList<>();
+        for(int i = 0; i< tamanioBarco; i++){
+            this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila + i, posColumna));
+        }
+    }
+
+    private boolean barcoEnColocacionPosicionInvalida(){
+        boolean posicionValida = true;
+        for(int i=0; i < this.coordenadasBarcoEnColocacion.size(); i++){
+            int posicionFila = this.coordenadasBarcoEnColocacion.get(i).getFila();
+            int posicionColumna = this.coordenadasBarcoEnColocacion.get(i).getColumna();
+            if(!this.celdas[posicionFila][posicionColumna].esAsignable()){
+                posicionValida = false;
             }
+        }
+        return (!posicionValida);
+    }
+
+    private void colocarBarcoHorizontalmente(int posFila, int posColumna, int tamanioBarco) {
+        if(posColumna+tamanioBarco > Mapa.MAXIMAS_FILAS_COLUMNAS){
+            asignarBarcoAPrimeraPosicionValidaHorizontal(tamanioBarco);
+            return;
+        }
+        asignarCoordenadasDeColocacionHorizontalmente(posFila, posColumna, tamanioBarco);
+    }
+
+    private void asignarCoordenadasDeColocacionHorizontalmente(int posFila, int posColumna, int tamanioBarco) {
+        this.coordenadasBarcoEnColocacion = new ArrayList<>();
+        for(int i = 0; i< tamanioBarco; i++){
+            this.coordenadasBarcoEnColocacion.add(new Coordenada(posFila, posColumna +i));
+        }
+    }
+
+    private void asignarBarcoAPrimeraPosicionValidaVertical(int tamanioBarco){
+        int i=0;
+        int j=0;
+        boolean colocado = false;
+        while(i+tamanioBarco < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+            while(j < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+                asignarCoordenadasDeColocacionVerticalmente(i, j, tamanioBarco);
+                if(!barcoEnColocacionPosicionInvalida())
+                    colocado = true;
+                j++;
+            }
+            i++;
+        }
+    }
+
+    private void asignarBarcoAPrimeraPosicionValidaHorizontal(int tamanioBarco){
+        int i=0;
+        int j=0;
+        boolean colocado = false;
+        while(i < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+            while(j+tamanioBarco < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+                asignarCoordenadasDeColocacionHorizontalmente(i, j, tamanioBarco);
+                if(!barcoEnColocacionPosicionInvalida())
+                    colocado = true;
+                j++;
+            }
+            i++;
         }
     }
 

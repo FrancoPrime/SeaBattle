@@ -24,4 +24,8 @@ public class Celda {
             throw new CeldaOcupadaException();
         this.contenido = new CeldaConBarco(barco);
     }
+
+    public boolean esAsignable(){
+        return this.contenido.esAsignable();
+    }
 }

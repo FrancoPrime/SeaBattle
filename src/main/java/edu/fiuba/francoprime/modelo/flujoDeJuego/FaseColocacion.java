@@ -1,34 +1,27 @@
 package edu.fiuba.francoprime.modelo.flujoDeJuego;
 
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
 
 public class FaseColocacion implements FaseJuego{
-
-    public FaseColocacion(){
-
-    }
 
     public FaseJuego siguienteFase(Juego juego){
         if(juego.cantidadAColocar() > 1) {
             juego.seColocoUnBarco();
             return this;
         }
-        if(juego.jugadorActual().identificador() == 1){
+        if(!juego.alFinalDeLaListaDeJugadores()){
             juego.avanzarJugador();
             juego.establecerColocacionDeBarcos();
-            return new FaseColocacion();
+            return this;
         }
-        else
-            return new FaseAtaque();
+        juego.avanzarJugador();
+        return new FaseAtaque();
     }
 
-    public void realizarJugada(Jugador primerJugador, Jugador segundoJugador, int jugadorActual, Jugada jugada){
-        if(jugadorActual == 1){
-            segundoJugador.realizarJugada(jugada);
-        }
-        else{
-            primerJugador.realizarJugada(jugada);
-        }
+    public void realizarJugada(ListaJugadores listaJugadores, Jugada jugada){
+        Jugador jugadorARealizar = listaJugadores.jugadorNoActual();
+        jugadorARealizar.realizarJugada(jugada);
     }
 
 }

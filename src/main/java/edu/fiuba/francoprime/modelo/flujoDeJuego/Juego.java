@@ -2,22 +2,19 @@ package edu.fiuba.francoprime.modelo.flujoDeJuego;
 
 import edu.fiuba.francoprime.modelo.jugador.Barco;
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
 
 import java.util.ArrayList;
 
 public class Juego {
 
     private FaseJuego fase;
-    private Jugador primerJugador;
-    private Jugador segundoJugador;
-    private int jugadorActual;
+    private ListaJugadores listaJugadores;
     private ArrayList<Barco> barcosAColocar;
 
     public Juego(){
-        this.primerJugador = new Jugador();
-        this.segundoJugador = new Jugador();
-        this.jugadorActual = 1;
         this.fase = new FaseColocacion();
+        this.listaJugadores = new ListaJugadores();
         establecerColocacionDeBarcos();
     }
 
@@ -26,20 +23,23 @@ public class Juego {
     }
 
     public Jugador jugadorActual(){
-        if(this.jugadorActual == 1)
-            return this.primerJugador;
-        return this.segundoJugador;
+        return this.listaJugadores.jugadorActual();
+    }
+
+    public boolean alFinalDeLaListaDeJugadores(){
+        return this.listaJugadores.estaAlFinal();
     }
 
     public void realizarJugada(Jugada jugada){
-        this.fase.realizarJugada(primerJugador, segundoJugador, this.jugadorActual, jugada);
+        this.fase.realizarJugada(this.listaJugadores, jugada);
+    }
+
+    public void avanzarFase(){
         this.fase = this.fase.siguienteFase(this);
     }
 
     public void avanzarJugador(){
-        this.jugadorActual++;
-        if(this.jugadorActual > 2)
-            this.jugadorActual = 1;
+        this.listaJugadores.avanzarJugador();
     }
 
     public int cantidadAColocar(){
@@ -64,7 +64,7 @@ public class Juego {
     public void siguienteBarcoAColocar(){
         Barco barcoAColocar = this.barcosAColocar.get(0);
         Jugada jugada = new JugadaEstablecerBarco(barcoAColocar);
-        this.fase.realizarJugada(this.primerJugador, this.segundoJugador, this.jugadorActual, jugada);
+        this.fase.realizarJugada(this.listaJugadores, jugada);
     }
 
 }
