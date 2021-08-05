@@ -1,4 +1,4 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.mapa;
 
 public class CeldaVisible implements Visibilidad{
 

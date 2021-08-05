@@ -1,5 +1,11 @@
 package edu.fiuba.francoprime.modelo;
 
+import edu.fiuba.francoprime.modelo.flujoDeJuego.Jugada;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaColocar;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaConfirmarColocacion;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaTocar;
+import edu.fiuba.francoprime.modelo.jugador.Barco;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

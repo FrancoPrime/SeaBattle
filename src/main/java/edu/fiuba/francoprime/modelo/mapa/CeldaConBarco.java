@@ -1,4 +1,6 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.mapa;
+
+import edu.fiuba.francoprime.modelo.jugador.Barco;
 
 public class CeldaConBarco implements ContenidoCelda{
     Barco barcoContenido;

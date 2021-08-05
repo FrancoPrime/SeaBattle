@@ -1,4 +1,6 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.flujoDeJuego;
+
+import edu.fiuba.francoprime.modelo.jugador.Jugador;
 
 public interface FaseJuego {
 

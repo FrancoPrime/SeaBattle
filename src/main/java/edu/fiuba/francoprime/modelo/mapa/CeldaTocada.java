@@ -1,4 +1,4 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.mapa;
 
 public class CeldaTocada implements Visibilidad{
 

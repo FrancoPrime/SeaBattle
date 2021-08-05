@@ -1,5 +1,8 @@
 package edu.fiuba.francoprime.modelo;
 
+import edu.fiuba.francoprime.modelo.jugador.Barco;
+import edu.fiuba.francoprime.modelo.mapa.Celda;
+import edu.fiuba.francoprime.modelo.mapa.CeldaYaTocadaException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

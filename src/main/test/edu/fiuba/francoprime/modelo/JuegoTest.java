@@ -1,5 +1,11 @@
 package edu.fiuba.francoprime.modelo;
 
+import edu.fiuba.francoprime.modelo.flujoDeJuego.FaseColocacion;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.Juego;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.Jugada;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaColocar;
+import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +31,7 @@ public class JuegoTest {
     public void test03luegoDeColocar5BarcosLaFaseEsDeColocacion(){
         Jugador.reiniciarClase();
         Juego juego = new Juego();
-        Jugada jugada = new JugadaColocar(0,0,Mapa.VERTICAL);
+        Jugada jugada = new JugadaColocar(0,0, Mapa.VERTICAL);
         juego.realizarJugada(jugada);
         jugada = new JugadaColocar(0,1,Mapa.VERTICAL);
         juego.realizarJugada(jugada);

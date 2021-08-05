@@ -1,4 +1,6 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.mapa;
+
+import edu.fiuba.francoprime.modelo.jugador.Barco;
 
 public class Celda {
 
@@ -10,14 +12,14 @@ public class Celda {
         this.visibilidad = new CeldaVisible();
     }
 
-    void tocarCelda(){
+    public void tocarCelda(){
         if(this.visibilidad.estaTocada())
             throw new CeldaYaTocadaException();
         this.contenido.tocarCelda();
         this.visibilidad = new CeldaTocada();
     }
 
-    void asignarABarco(Barco barco){
+    public void asignarABarco(Barco barco){
         if(!this.contenido.esAsignable())
             throw new CeldaOcupadaException();
         this.contenido = new CeldaConBarco(barco);

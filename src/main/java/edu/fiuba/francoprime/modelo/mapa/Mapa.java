@@ -1,15 +1,17 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.mapa;
+
+import edu.fiuba.francoprime.modelo.jugador.Barco;
 
 import java.util.ArrayList;
 
 public class Mapa {
 
     public static final int MAXIMAS_FILAS_COLUMNAS = 10;
-    Celda[][] celdas;
-    Barco barcoEnColocacion;
-    ArrayList<Coordenada> coordenadasBarcoEnColocacion;
-    static final int HORIZONTAL = 0;
-    static final int VERTICAL = 1;
+    private Celda[][] celdas;
+    private Barco barcoEnColocacion;
+    private ArrayList<Coordenada> coordenadasBarcoEnColocacion;
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
 
     public Mapa(){
         celdas = new Celda[MAXIMAS_FILAS_COLUMNAS][MAXIMAS_FILAS_COLUMNAS];

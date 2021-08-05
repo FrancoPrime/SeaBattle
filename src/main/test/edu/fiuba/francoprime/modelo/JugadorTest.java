@@ -1,11 +1,14 @@
 package edu.fiuba.francoprime.modelo;
 
+import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaTocar;
+import edu.fiuba.francoprime.modelo.jugador.Barco;
+import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.mapa.Coordenada;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.*;
 
 public class JugadorTest {
 

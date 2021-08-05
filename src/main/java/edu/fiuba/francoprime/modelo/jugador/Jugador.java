@@ -1,4 +1,7 @@
-package edu.fiuba.francoprime.modelo;
+package edu.fiuba.francoprime.modelo.jugador;
+
+import edu.fiuba.francoprime.modelo.flujoDeJuego.Jugada;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 
 import java.util.ArrayList;
 

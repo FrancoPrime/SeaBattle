@@ -1,5 +1,9 @@
 package edu.fiuba.francoprime.modelo;
 
+import edu.fiuba.francoprime.modelo.jugador.Barco;
+import edu.fiuba.francoprime.modelo.mapa.CeldaOcupadaException;
+import edu.fiuba.francoprime.modelo.mapa.Coordenada;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
