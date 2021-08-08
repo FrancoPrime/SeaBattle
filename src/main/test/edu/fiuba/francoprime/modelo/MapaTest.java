@@ -148,7 +148,7 @@ public class MapaTest {
     }
 
     @Test
-    public void test09seIntentaColocarUnBarcoSolapandoAOtroYaColocadoYSeColocaEnLaPrimerPosicionValidaHorizontal(){
+    public void test09seIntentaColocarUnBarcoSolapandoAOtroYaColocadoYSeColocaEnLaPrimerPosicionValida(){
         Mapa mapa = new Mapa();
         Barco barco = new Barco(4);
         mapa.establecerBarcoEnColocacion(barco);
@@ -159,9 +159,9 @@ public class MapaTest {
         mapa.coordenadasBarcoEnColocacion(5, 2, Mapa.VERTICAL);
         mapa.finalizarColocacion();
         mapa.realizarJugada(0,0);
-        mapa.realizarJugada(0,1);
+        mapa.realizarJugada(1,0);
         assertFalse(barco.estaDestruido());
-        mapa.realizarJugada(0,2);
+        mapa.realizarJugada(2,0);
         assertTrue(barco.estaDestruido());
     }
 

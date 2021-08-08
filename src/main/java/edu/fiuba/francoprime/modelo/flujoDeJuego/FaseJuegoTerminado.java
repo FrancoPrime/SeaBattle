@@ -13,7 +13,7 @@ public class FaseJuegoTerminado implements FaseJuego{
     }
 
     public Mapa obtenerMapaActual(ListaJugadores listaJugadores) {
-        return listaJugadores.jugadorActual().obtenerMapa();
+        return listaJugadores.jugadorNoActual().obtenerMapa();
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.francoprime.controlador;
 
 import edu.fiuba.francoprime.modelo.flujoDeJuego.*;
+import edu.fiuba.francoprime.modelo.mapa.CeldaYaTocadaException;
 import edu.fiuba.francoprime.modelo.mapa.Mapa;
 
 public class ControladorVistaCasillero {
@@ -8,6 +9,8 @@ public class ControladorVistaCasillero {
     private Juego juego;
     private int rotacion;
     private boolean seRealizoJugada;
+    private int ultimaFila;
+    private int ultimaColumna;
 
     private ControladorVistaCasillero(Juego juego){
         this.juego = juego;
@@ -25,17 +28,32 @@ public class ControladorVistaCasillero {
 
     public void realizarJugada(int fila, int columna){
         if(this.juego.faseActual() instanceof FaseColocacion){
-            Jugada jugada = new JugadaColocar(fila, columna, this.rotacion);
-            this.juego.realizarJugada(jugada);
-            this.juego.notifyObservers();
-            this.seRealizoJugada = false;
+            realizarColocacion(fila, columna);
         }
         else if(!this.seRealizoJugada){
+            realizarAtaque(fila, columna);
+        }
+    }
+
+    private void realizarAtaque(int fila, int columna) {
+        try {
             Jugada jugada = new JugadaTocar(fila, columna);
             this.juego.realizarJugada(jugada);
             this.juego.notifyObservers();
             this.seRealizoJugada = true;
         }
+        catch (CeldaYaTocadaException e){
+
+        }
+    }
+
+    private void realizarColocacion(int fila, int columna) {
+        Jugada jugada = new JugadaColocar(fila, columna, this.rotacion);
+        this.juego.realizarJugada(jugada);
+        this.juego.notifyObservers();
+        this.seRealizoJugada = false;
+        this.ultimaFila = fila;
+        this.ultimaColumna = columna;
     }
 
     public void seAvanzoElTurno(){
@@ -51,6 +69,7 @@ public class ControladorVistaCasillero {
             this.rotacion = Mapa.VERTICAL;
         else
             this.rotacion = Mapa.HORIZONTAL;
+        this.realizarJugada(this.ultimaFila, this.ultimaColumna);
     }
 
 }

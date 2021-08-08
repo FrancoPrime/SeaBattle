@@ -12,6 +12,7 @@ public class Mapa {
     private ArrayList<Coordenada> coordenadasBarcoEnColocacion;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
+    private int ultimaRotacion = HORIZONTAL;
 
     public Mapa(){
         celdas = new Celda[MAXIMAS_FILAS_COLUMNAS][MAXIMAS_FILAS_COLUMNAS];
@@ -37,18 +38,27 @@ public class Mapa {
 
     public void establecerBarcoEnColocacion(Barco barco){
         this.barcoEnColocacion = barco;
-        asignarBarcoAPrimeraPosicionValidaHorizontal(barco.tamanio());
+        asignarBarcoAPrimeraPosicionValida(barco.tamanio());
     }
 
     public void coordenadasBarcoEnColocacion(int posFila, int posColumna, int rotacion){
         int tamanioBarco = this.barcoEnColocacion.tamanio();
         if(rotacion == Mapa.HORIZONTAL){
             colocarBarcoHorizontalmente(posFila, posColumna, tamanioBarco);
+            this.ultimaRotacion = Mapa.HORIZONTAL;
         }else{
             colocarBarcoVerticalmente(posFila, posColumna, tamanioBarco);
+            this.ultimaRotacion = Mapa.VERTICAL;
         }
         if(!barcoEnColocacionPosicionValida())
+            asignarBarcoAPrimeraPosicionValida(tamanioBarco);
+    }
+
+    private void asignarBarcoAPrimeraPosicionValida(int tamanioBarco){
+        if(this.ultimaRotacion == Mapa.HORIZONTAL)
             asignarBarcoAPrimeraPosicionValidaHorizontal(tamanioBarco);
+        else
+            asignarBarcoAPrimeraPosicionValidaVertical(tamanioBarco);
     }
 
     private void colocarBarcoVerticalmente(int posFila, int posColumna, int tamanioBarco) {

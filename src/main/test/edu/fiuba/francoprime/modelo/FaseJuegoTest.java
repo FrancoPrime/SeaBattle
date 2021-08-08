@@ -1,6 +1,9 @@
 package edu.fiuba.francoprime.modelo;
 
 import edu.fiuba.francoprime.modelo.flujoDeJuego.*;
+import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,6 +51,17 @@ public class FaseJuegoTest {
         Juego juego = mock(Juego.class);
         FaseJuego fase = new FaseJuegoTerminado();
         assertTrue(fase.siguienteFase(juego) instanceof FaseJuegoTerminado);
+    }
+
+    @Test
+    public void test06FaseJuegoTerminadoDevuelveElUltimoMapaUtilizado(){
+        Jugador jugadorMock = mock(Jugador.class);
+        ListaJugadores listaJugadores = mock(ListaJugadores.class);
+        when(listaJugadores.jugadorNoActual()).thenReturn(jugadorMock);
+        Mapa mapa = new Mapa();
+        when(jugadorMock.obtenerMapa()).thenReturn(mapa);
+        FaseJuego fase = new FaseJuegoTerminado();
+        assertEquals(mapa, fase.obtenerMapaActual(listaJugadores));
     }
 
 }

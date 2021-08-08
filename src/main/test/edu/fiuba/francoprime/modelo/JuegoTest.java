@@ -137,4 +137,86 @@ public class JuegoTest {
         assertTrue(juego.faseActual() instanceof FaseJuegoTerminado);
     }
 
+    @Test
+    public void test10seTocanTodosLosBarcosDelJugador2YElGanadorEsEl1(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        for(int j = 0; j < 3; j++) {
+            for (int i = 0; i < (5-j); i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        for(int j = 3; j < 5; j++) {
+            for (int i = 0; i < 2; i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        assertEquals(1, juego.jugadorGanador().identificador());
+    }
+
+    @Test
+    public void test11seTocanTodosLosBarcosDelJugador1YElGanadorEsEl2(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        for(int j = 0; j < 3; j++) {
+            for (int i = 0; i < (5-j); i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        for(int j = 3; j < 5; j++) {
+            for (int i = 0; i < 1; i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        Jugada jugada = new JugadaTocar(1, 3);
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        jugada = new JugadaTocar(1, 7);
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        jugada = new JugadaTocar(1, 4);
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        assertEquals(2, juego.jugadorGanador().identificador());
+    }
+
+    @Test
+    public void test12ningunJugadorGanoPorLoQueNoHayGanador(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        for(int j = 0; j < 3; j++) {
+            for (int i = 0; i < (5-j); i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        assertTrue(juego.jugadorGanador() == null);
+    }
 }
