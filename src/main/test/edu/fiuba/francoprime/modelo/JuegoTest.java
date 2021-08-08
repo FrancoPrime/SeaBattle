@@ -2,11 +2,15 @@ package edu.fiuba.francoprime.modelo;
 
 import edu.fiuba.francoprime.modelo.flujoDeJuego.*;
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
+import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
+import edu.fiuba.francoprime.modelo.mapa.CeldaBarcoVisible;
+import edu.fiuba.francoprime.modelo.mapa.CeldaNoVisible;
 import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import edu.fiuba.francoprime.modelo.mapa.Visibilidad;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class JuegoTest {
 
@@ -218,5 +222,19 @@ public class JuegoTest {
             }
         }
         assertTrue(juego.jugadorGanador() == null);
+    }
+
+    @Test
+    public void test13elJuegoInvisibilizaElMapaActual(){
+        Juego juego = new Juego();
+        Mapa mapaJugadorActual = juego.obtenerMapaActual();
+        Jugada jugada = new JugadaColocar(0,0, Mapa.VERTICAL);
+        juego.realizarJugada(jugada);
+        juego.finalizarColocacion();
+        Visibilidad visibilidadCelda = mapaJugadorActual.visibilidadCelda(0,0);
+        assertTrue(visibilidadCelda instanceof CeldaBarcoVisible);
+        juego.invisibilizarMapa();
+        visibilidadCelda = mapaJugadorActual.visibilidadCelda(0,0);
+        assertTrue(visibilidadCelda instanceof CeldaNoVisible);
     }
 }

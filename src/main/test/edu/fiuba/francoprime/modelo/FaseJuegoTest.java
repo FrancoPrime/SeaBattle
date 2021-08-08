@@ -64,4 +64,23 @@ public class FaseJuegoTest {
         assertEquals(mapa, fase.obtenerMapaActual(listaJugadores));
     }
 
+    @Test
+    public void test07CuandoAvanzaFaseColocacionAFaseColocacionInvisivilizaLasCeldasDelMapa(){
+        Juego juegoMock = mock(Juego.class);
+        when(juegoMock.cantidadAColocar()).thenReturn(1);
+        when(juegoMock.alFinalDeLaListaDeJugadores()).thenReturn(false);
+        FaseJuego faseColocacion = new FaseColocacion();
+        faseColocacion.siguienteFase(juegoMock);
+        verify(juegoMock, times(1)).invisibilizarMapa();
+    }
+
+    @Test
+    public void test08CuandoAvanzaFaseColocacionAFaseAtaqueInvisivilizaLasCeldasDelMapa(){
+        Juego juegoMock = mock(Juego.class);
+        when(juegoMock.cantidadAColocar()).thenReturn(1);
+        when(juegoMock.alFinalDeLaListaDeJugadores()).thenReturn(true);
+        FaseJuego faseColocacion = new FaseColocacion();
+        faseColocacion.siguienteFase(juegoMock);
+        verify(juegoMock, times(1)).invisibilizarMapa();
+    }
 }

@@ -1,8 +1,7 @@
 package edu.fiuba.francoprime.modelo;
 
 import edu.fiuba.francoprime.modelo.jugador.Barco;
-import edu.fiuba.francoprime.modelo.mapa.Celda;
-import edu.fiuba.francoprime.modelo.mapa.CeldaYaTocadaException;
+import edu.fiuba.francoprime.modelo.mapa.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,6 +24,13 @@ public class CeldaTest {
         celda.asignarABarco(barco);
         celda.tocarCelda();
         assertThrows(CeldaYaTocadaException.class, celda::tocarCelda);
+    }
+
+    @Test
+    public void test03laVisibilidadAlTocarDeUnaCeldaSinBarcoEsAguaTocada(){
+        ContenidoCelda contenido = new CeldaSinBarco();
+        Visibilidad visibilidadAlTocar = contenido.visibilidadAlTocar();
+        assertTrue(visibilidadAlTocar instanceof CeldaAguaTocada);
     }
 
 }

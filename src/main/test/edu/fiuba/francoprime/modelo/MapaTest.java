@@ -163,6 +163,8 @@ public class MapaTest {
         assertFalse(barco.estaDestruido());
         mapa.realizarJugada(2,0);
         assertTrue(barco.estaDestruido());
+        Visibilidad visibilidad = mapa.visibilidadCelda(3,0);
+        assertEquals("NoVisible", visibilidad.nombreVisibilidad());
     }
 
     @Test
@@ -191,5 +193,31 @@ public class MapaTest {
         mapa.finalizarColocacion();
         Visibilidad visibilidad = mapa.visibilidadCelda(4,7);
         assertEquals("Barco", visibilidad.nombreVisibilidad());
+    }
+
+    @Test
+    public void test13seEstableceUnBarcoEnColocacionYSeColocaEnLaPrimerPosicionValidaPorDefault(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.finalizarColocacion();
+        Visibilidad visibilidad = mapa.visibilidadCelda(0,0);
+        assertEquals("Barco", visibilidad.nombreVisibilidad());
+    }
+
+    @Test
+    public void test14seLlamaAInvisibilizarUnMapaEInvisibilizaSusCeldas(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.finalizarColocacion();
+        barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.finalizarColocacion();
+        mapa.invisibilizar();
+        Visibilidad visibilidad = mapa.visibilidadCelda(0,0);
+        assertEquals("NoVisible", visibilidad.nombreVisibilidad());
+        visibilidad = mapa.visibilidadCelda(0,6);
+        assertEquals("NoVisible", visibilidad.nombreVisibilidad());
     }
 }
