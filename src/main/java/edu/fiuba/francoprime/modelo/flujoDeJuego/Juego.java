@@ -83,6 +83,7 @@ public class Juego extends Observable {
         Jugada jugada = new JugadaEstablecerBarco(barcoAColocar);
         this.fase.realizarJugada(this.listaJugadores, jugada);
         this.listaJugadores.jugadorActual().agregarBarco(barcoAColocar);
+        setChanged();
     }
 
     public void invisibilizarMapa(){

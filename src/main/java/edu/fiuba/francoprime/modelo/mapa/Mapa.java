@@ -37,6 +37,7 @@ public class Mapa {
 
     public void establecerBarcoEnColocacion(Barco barco){
         this.barcoEnColocacion = barco;
+        asignarBarcoAPrimeraPosicionValidaHorizontal(barco.tamanio());
     }
 
     public void coordenadasBarcoEnColocacion(int posFila, int posColumna, int rotacion){

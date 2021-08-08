@@ -38,7 +38,7 @@ public class App extends Application {
             this.juego.finalizarColocacion();
             this.juego.notifyObservers();
         });
-        botonConfirmarColocacion.relocate(500, 460);
+        botonConfirmarColocacion.relocate(450, 455);
         panelPrincipal.getChildren().add(botonConfirmarColocacion);
         Scene scene = new Scene(panelPrincipal, 640, 480);
         stage.setScene(scene);

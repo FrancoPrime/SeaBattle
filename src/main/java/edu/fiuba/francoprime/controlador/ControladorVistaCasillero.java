@@ -28,6 +28,7 @@ public class ControladorVistaCasillero {
         else{
             Jugada jugada = new JugadaTocar(fila, columna);
             this.juego.realizarJugada(jugada);
+            this.juego.avanzarFase();
             this.juego.notifyObservers();
         }
     }
