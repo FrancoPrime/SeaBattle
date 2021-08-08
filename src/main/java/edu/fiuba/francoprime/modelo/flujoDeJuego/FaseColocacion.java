@@ -11,10 +11,12 @@ public class FaseColocacion implements FaseJuego{
             return this;
         }
         if(!juego.alFinalDeLaListaDeJugadores()){
+            juego.invisibilizarMapa();
             juego.avanzarJugador();
             juego.establecerColocacionDeBarcos();
             return this;
         }
+        juego.invisibilizarMapa();
         juego.avanzarJugador();
         return new FaseAtaque();
     }

@@ -9,23 +9,28 @@ public class Celda {
 
     public Celda(){
         this.contenido = new CeldaSinBarco();
-        this.visibilidad = new CeldaVisible();
+        this.visibilidad = new CeldaNoVisible();
     }
 
     public void tocarCelda(){
         if(this.visibilidad.estaTocada())
             throw new CeldaYaTocadaException();
         this.contenido.tocarCelda();
-        this.visibilidad = new CeldaTocada();
+        this.visibilidad = this.contenido.visibilidadAlTocar();
     }
 
     public void asignarABarco(Barco barco){
         if(!this.contenido.esAsignable())
             throw new CeldaOcupadaException();
         this.contenido = new CeldaConBarco(barco);
+        this.visibilidad = new CeldaBarcoVisible();
     }
 
     public boolean esAsignable(){
         return this.contenido.esAsignable();
+    }
+
+    public void invisibilizar(){
+        this.visibilidad = new CeldaNoVisible();
     }
 }

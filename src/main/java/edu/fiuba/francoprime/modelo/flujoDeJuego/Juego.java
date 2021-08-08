@@ -3,10 +3,12 @@ package edu.fiuba.francoprime.modelo.flujoDeJuego;
 import edu.fiuba.francoprime.modelo.jugador.Barco;
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
 import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Juego {
+public class Juego extends Observable {
 
     private FaseJuego fase;
     private ListaJugadores listaJugadores;
@@ -16,6 +18,10 @@ public class Juego {
         this.fase = new FaseColocacion();
         this.listaJugadores = new ListaJugadores();
         establecerColocacionDeBarcos();
+    }
+
+    public Mapa obtenerMapaActual(){
+        return this.listaJugadores.mapaActual();
     }
 
     public FaseJuego faseActual(){
@@ -32,10 +38,12 @@ public class Juego {
 
     public void realizarJugada(Jugada jugada){
         this.fase.realizarJugada(this.listaJugadores, jugada);
+        setChanged();
     }
 
     public void avanzarFase(){
         this.fase = this.fase.siguienteFase(this);
+        setChanged();
     }
 
     public void avanzarJugador(){
@@ -65,6 +73,11 @@ public class Juego {
         Barco barcoAColocar = this.barcosAColocar.get(0);
         Jugada jugada = new JugadaEstablecerBarco(barcoAColocar);
         this.fase.realizarJugada(this.listaJugadores, jugada);
+    }
+
+    public void invisibilizarMapa(){
+        Mapa mapaActual = this.obtenerMapaActual();
+        mapaActual.invisibilizar();
     }
 
 }

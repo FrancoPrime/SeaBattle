@@ -30,6 +30,10 @@ public class Jugador {
         jugada.ejecutar(this.mapaContrincante);
     }
 
+    public Mapa obtenerMapa(){
+        return this.mapaContrincante;
+    }
+
     public int identificador(){
         return this.identificador;
     }

@@ -1,5 +1,7 @@
 package edu.fiuba.francoprime.modelo.jugador;
 
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
+
 import java.util.ArrayList;
 
 public class ListaJugadores {
@@ -30,6 +32,10 @@ public class ListaJugadores {
         this.jugadorActual++;
         if(this.jugadorActual > 2)
             this.jugadorActual = 1;
+    }
+
+    public Mapa mapaActual(){
+        return this.jugadores.get(this.jugadorActual-1).obtenerMapa();
     }
 
     public boolean estaAlFinal(){

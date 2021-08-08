@@ -16,4 +16,8 @@ public class CeldaConBarco implements ContenidoCelda{
     public boolean esAsignable(){
         return false;
     }
+
+    public Visibilidad visibilidadAlTocar(){
+        return new CeldaBarcoTocado();
+    }
 }

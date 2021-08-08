@@ -20,6 +20,7 @@ public class Mapa {
                 celdas[i][j] = new Celda();
             }
         }
+        this.coordenadasBarcoEnColocacion = new ArrayList<>();
     }
 
     public void agregarBarco(Barco barco, ArrayList<Coordenada> coordenadas){
@@ -107,8 +108,7 @@ public class Mapa {
     }
 
     private void asignarBarcoAPrimeraPosicionValidaHorizontal(int tamanioBarco){
-        int i=0;
-        int j=0;
+        int i=0, j=0;
         boolean colocado = false;
         while(i < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
             while(j+tamanioBarco < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
@@ -124,7 +124,30 @@ public class Mapa {
     public void finalizarColocacion(){
         agregarBarco(this.barcoEnColocacion, this.coordenadasBarcoEnColocacion);
         this.barcoEnColocacion = null;
-        this.coordenadasBarcoEnColocacion = null;
+        this.coordenadasBarcoEnColocacion = new ArrayList<>();
+    }
+
+    public Visibilidad visibilidadCelda(int fila, int columna){
+        if(estaColocandose(fila, columna))
+            return new CeldaBarcoVisible();
+        return this.celdas[fila][columna].visibilidad;
+    }
+    
+    private boolean estaColocandose(int fila, int columna){
+        for(int i=0;i<this.coordenadasBarcoEnColocacion.size();i++){
+            Coordenada coordenadaActual = this.coordenadasBarcoEnColocacion.get(i);
+            if(coordenadaActual.getColumna() == columna && coordenadaActual.getFila() == fila)
+                return true;
+        }
+        return false;
+    }
+
+    public void invisibilizar(){
+        for(int i=0; i<Mapa.MAXIMAS_FILAS_COLUMNAS; i++) {
+            for (int j = 0; j < Mapa.MAXIMAS_FILAS_COLUMNAS; j++) {
+                this.celdas[i][j].invisibilizar();
+            }
+        }
     }
 
 }
