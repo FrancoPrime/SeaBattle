@@ -41,6 +41,10 @@ public class Juego extends Observable {
         setChanged();
     }
 
+    public boolean hayGanador() {
+        return this.listaJugadores.hayGanador();
+    }
+
     public void finalizarColocacion() {
         this.obtenerMapaActual().finalizarColocacion();
         this.avanzarFase();
@@ -78,6 +82,7 @@ public class Juego extends Observable {
         Barco barcoAColocar = this.barcosAColocar.get(0);
         Jugada jugada = new JugadaEstablecerBarco(barcoAColocar);
         this.fase.realizarJugada(this.listaJugadores, jugada);
+        this.listaJugadores.jugadorActual().agregarBarco(barcoAColocar);
     }
 
     public void invisibilizarMapa(){

@@ -34,12 +34,17 @@ public class ListaJugadores {
             this.jugadorActual = 1;
     }
 
-    public Mapa mapaActual(){
-        return this.jugadores.get(this.jugadorActual-1).obtenerMapa();
-    }
-
     public boolean estaAlFinal(){
         return this.jugadorActual == 2;
+    }
+
+    public boolean hayGanador(){
+        boolean hayGanador = false;
+        for(Jugador jugador : this.jugadores){
+            if(jugador.todosSusBarcosDestruidos())
+                hayGanador = true;
+        }
+        return hayGanador;
     }
 
 }

@@ -1,9 +1,6 @@
 package edu.fiuba.francoprime.modelo;
 
-import edu.fiuba.francoprime.modelo.flujoDeJuego.FaseAtaque;
-import edu.fiuba.francoprime.modelo.flujoDeJuego.FaseColocacion;
-import edu.fiuba.francoprime.modelo.flujoDeJuego.FaseJuego;
-import edu.fiuba.francoprime.modelo.flujoDeJuego.Juego;
+import edu.fiuba.francoprime.modelo.flujoDeJuego.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,6 +41,13 @@ public class FaseJuegoTest {
         FaseJuego fase = new FaseAtaque();
         assertTrue(fase.siguienteFase(juego) instanceof FaseAtaque);
         verify(juego, times(1)).avanzarJugador();
+    }
+
+    @Test
+    public void test05FaseJuegoTerminadoSiempreSeDevuelveASiMisma(){
+        Juego juego = mock(Juego.class);
+        FaseJuego fase = new FaseJuegoTerminado();
+        assertTrue(fase.siguienteFase(juego) instanceof FaseJuegoTerminado);
     }
 
 }

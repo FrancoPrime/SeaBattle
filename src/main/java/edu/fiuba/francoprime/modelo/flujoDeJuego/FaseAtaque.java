@@ -8,6 +8,8 @@ public class FaseAtaque implements FaseJuego{
 
     public FaseJuego siguienteFase(Juego juego) {
         juego.avanzarJugador();
+        if(juego.hayGanador())
+            return new FaseJuegoTerminado();
         return this;
     }
 

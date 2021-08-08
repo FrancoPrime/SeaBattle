@@ -110,4 +110,31 @@ public class JuegoTest {
         assertEquals("BarcoTocado", visibilidad.nombreVisibilidad());
     }
 
+    @Test
+    public void test09seTocanTodosLosBarcosDeUnJugadorYLaFaseDeJuegoEsTerminado(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        for(int j = 0; j < 3; j++) {
+            for (int i = 0; i < (5-j); i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        for(int j = 3; j < 5; j++) {
+            for (int i = 0; i < 2; i++) {
+                Jugada jugada = new JugadaTocar(i, j);
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+                juego.realizarJugada(jugada);
+                juego.avanzarFase();
+            }
+        }
+        assertTrue(juego.faseActual() instanceof FaseJuegoTerminado);
+    }
+
 }

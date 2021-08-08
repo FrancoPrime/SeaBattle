@@ -16,6 +16,7 @@ public class Jugador {
         this.identificador = identificadorJugadores;
         identificadorJugadores++;
         this.mapaContrincante = new Mapa();
+        this.barcos = new ArrayList<>();
     }
 
     public static void reiniciarClase(){
@@ -36,6 +37,19 @@ public class Jugador {
 
     public int identificador(){
         return this.identificador;
+    }
+
+    public void agregarBarco(Barco barco){
+        this.barcos.add(barco);
+    }
+
+    public boolean todosSusBarcosDestruidos(){
+        boolean barcosDestruidos = true;
+        for(Barco bar : this.barcos){
+            if(!bar.estaDestruido())
+                barcosDestruidos = false;
+        }
+        return barcosDestruidos;
     }
 
 }
