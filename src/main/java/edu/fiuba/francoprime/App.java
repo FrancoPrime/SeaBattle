@@ -3,7 +3,6 @@ package edu.fiuba.francoprime;
 import edu.fiuba.francoprime.controlador.ControladorVistaCasillero;
 import edu.fiuba.francoprime.modelo.flujoDeJuego.Juego;
 import edu.fiuba.francoprime.modelo.flujoDeJuego.Jugada;
-import edu.fiuba.francoprime.modelo.flujoDeJuego.JugadaConfirmarColocacion;
 import edu.fiuba.francoprime.modelo.mapa.Mapa;
 import edu.fiuba.francoprime.vista.VistaCasillero;
 import javafx.application.Application;
@@ -36,9 +35,7 @@ public class App extends Application {
         }
         Button botonConfirmarColocacion = new Button("Confirmar colocacion");
         botonConfirmarColocacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            Jugada jugada = new JugadaConfirmarColocacion();
-            this.juego.realizarJugada(jugada);
-            this.juego.avanzarFase();
+            this.juego.finalizarColocacion();
             this.juego.notifyObservers();
         });
         botonConfirmarColocacion.relocate(500, 460);

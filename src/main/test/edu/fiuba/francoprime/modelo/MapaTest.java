@@ -4,6 +4,7 @@ import edu.fiuba.francoprime.modelo.jugador.Barco;
 import edu.fiuba.francoprime.modelo.mapa.CeldaOcupadaException;
 import edu.fiuba.francoprime.modelo.mapa.Coordenada;
 import edu.fiuba.francoprime.modelo.mapa.Mapa;
+import edu.fiuba.francoprime.modelo.mapa.Visibilidad;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -164,4 +165,31 @@ public class MapaTest {
         assertTrue(barco.estaDestruido());
     }
 
+    @Test
+    public void test10sePideLaVisibilidadDeUnMapaVacioYDevuelveLaEsperada(){
+        Mapa mapa = new Mapa();
+        Visibilidad visibilidad = mapa.visibilidadCelda(2,2);
+        assertEquals("NoVisible", visibilidad.nombreVisibilidad());
+    }
+
+    @Test
+    public void test11sePideLaVisibilidadDeUnMapaEnUnBarcoEnColocacionYDevuelveLaEsperada(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(2, 7, Mapa.VERTICAL);
+        Visibilidad visibilidad = mapa.visibilidadCelda(4,7);
+        assertEquals("Barco", visibilidad.nombreVisibilidad());
+    }
+
+    @Test
+    public void test12sePideLaVisibilidadDeUnMapaEnUnBarcoColocadoYDevuelveLaEsperada(){
+        Mapa mapa = new Mapa();
+        Barco barco = new Barco(4);
+        mapa.establecerBarcoEnColocacion(barco);
+        mapa.coordenadasBarcoEnColocacion(2, 7, Mapa.VERTICAL);
+        mapa.finalizarColocacion();
+        Visibilidad visibilidad = mapa.visibilidadCelda(4,7);
+        assertEquals("Barco", visibilidad.nombreVisibilidad());
+    }
 }

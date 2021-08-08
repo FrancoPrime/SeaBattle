@@ -2,6 +2,9 @@ package edu.fiuba.francoprime.modelo.flujoDeJuego;
 
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
 import edu.fiuba.francoprime.modelo.jugador.ListaJugadores;
+import edu.fiuba.francoprime.modelo.mapa.Mapa;
+
+import java.util.List;
 
 public class FaseColocacion implements FaseJuego{
 
@@ -24,6 +27,10 @@ public class FaseColocacion implements FaseJuego{
     public void realizarJugada(ListaJugadores listaJugadores, Jugada jugada){
         Jugador jugadorARealizar = listaJugadores.jugadorNoActual();
         jugadorARealizar.realizarJugada(jugada);
+    }
+
+    public Mapa obtenerMapaActual(ListaJugadores listaJugadores){
+        return listaJugadores.jugadorNoActual().obtenerMapa();
     }
 
 }

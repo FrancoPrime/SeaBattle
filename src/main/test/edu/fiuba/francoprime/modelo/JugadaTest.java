@@ -27,22 +27,13 @@ public class JugadaTest {
     }
 
     @Test
-    public void test03unaJugadaConfirmarColocacionEstableceElBarcoEnLaCeldaEsperada(){
-        Jugada jugada = new JugadaConfirmarColocacion();
-        Mapa mapa = mock(Mapa.class);
-        jugada.ejecutar(mapa);
-        verify(mapa, times(1)).finalizarColocacion();
-    }
-
-    @Test
-    public void test04seRealizaUnaSerieDeJugadasElBarcoSeColocaYTocaCorrectamente(){
+    public void test03seRealizaUnaSerieDeJugadasElBarcoSeColocaYTocaCorrectamente(){
         Barco barco = new Barco(3);
         Jugada jugada = new JugadaColocar(2, 5, Mapa.HORIZONTAL);
         Mapa mapa = new Mapa();
         mapa.establecerBarcoEnColocacion(barco);
         jugada.ejecutar(mapa);
-        jugada = new JugadaConfirmarColocacion();
-        jugada.ejecutar(mapa);
+        mapa.finalizarColocacion();
         jugada = new JugadaTocar(2,6);
         jugada.ejecutar(mapa);
         assertEquals(2, barco.tamanio());

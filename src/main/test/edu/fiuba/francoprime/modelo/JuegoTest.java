@@ -3,6 +3,7 @@ package edu.fiuba.francoprime.modelo;
 import edu.fiuba.francoprime.modelo.flujoDeJuego.*;
 import edu.fiuba.francoprime.modelo.jugador.Jugador;
 import edu.fiuba.francoprime.modelo.mapa.Mapa;
+import edu.fiuba.francoprime.modelo.mapa.Visibilidad;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,29 +27,19 @@ public class JuegoTest {
     public void colocacionDeBarcosEstandar(Juego juego){
         Jugada jugada = new JugadaColocar(0,0, Mapa.VERTICAL);
         juego.realizarJugada(jugada);
-        jugada = new JugadaConfirmarColocacion();
-        juego.realizarJugada(jugada);
-        juego.avanzarFase();
+        juego.finalizarColocacion();
         jugada = new JugadaColocar(0,1,Mapa.VERTICAL);
         juego.realizarJugada(jugada);
-        jugada = new JugadaConfirmarColocacion();
-        juego.realizarJugada(jugada);
-        juego.avanzarFase();
+        juego.finalizarColocacion();
         jugada = new JugadaColocar(0,2,Mapa.VERTICAL);
         juego.realizarJugada(jugada);
-        jugada = new JugadaConfirmarColocacion();
-        juego.realizarJugada(jugada);
-        juego.avanzarFase();
+        juego.finalizarColocacion();
         jugada = new JugadaColocar(0,3,Mapa.VERTICAL);
         juego.realizarJugada(jugada);
-        jugada = new JugadaConfirmarColocacion();
-        juego.realizarJugada(jugada);
-        juego.avanzarFase();
+        juego.finalizarColocacion();
         jugada = new JugadaColocar(0,4,Mapa.VERTICAL);
         juego.realizarJugada(jugada);
-        jugada = new JugadaConfirmarColocacion();
-        juego.realizarJugada(jugada);
-        juego.avanzarFase();
+        juego.finalizarColocacion();
     }
 
     @Test
@@ -75,6 +66,48 @@ public class JuegoTest {
         colocacionDeBarcosEstandar(juego);
         assertEquals(1, juego.jugadorActual().identificador());
         assertTrue(juego.faseActual() instanceof FaseAtaque);
+    }
+
+    @Test
+    public void test06enFaseAtaqueSeRealizaUnToqueYElTurnoPasaAlSegundoJugador(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        Jugada jugada = new JugadaTocar(0,0);
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        assertEquals(2, juego.jugadorActual().identificador());
+        assertTrue(juego.faseActual() instanceof FaseAtaque);
+    }
+
+    @Test
+    public void test07enFaseColocacionSeRealizaUnaColocacionYElBarcoEstaDondeSeEspera(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        Jugada jugada = new JugadaColocar(0,0, Mapa.VERTICAL);
+        juego.realizarJugada(jugada);
+        juego.finalizarColocacion();
+        Mapa mapaActual = juego.obtenerMapaActual();
+        Visibilidad visibilidad = mapaActual.visibilidadCelda(1,0);
+        assertEquals("Barco", visibilidad.nombreVisibilidad());
+    }
+
+    @Test
+    public void test08enFaseAtaqueSeRealizaUnToqueYElBarcoEsTocado(){
+        Jugador.reiniciarClase();
+        Juego juego = new Juego();
+        colocacionDeBarcosEstandar(juego);
+        colocacionDeBarcosEstandar(juego);
+        Jugada jugada = new JugadaTocar(0,0);
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        juego.realizarJugada(jugada);
+        juego.avanzarFase();
+        Mapa mapaActual = juego.obtenerMapaActual();
+        Visibilidad visibilidad = mapaActual.visibilidadCelda(0,0);
+        assertEquals(1, juego.jugadorActual().identificador());
+        assertEquals("BarcoTocado", visibilidad.nombreVisibilidad());
     }
 
 }

@@ -21,7 +21,7 @@ public class Juego extends Observable {
     }
 
     public Mapa obtenerMapaActual(){
-        return this.listaJugadores.mapaActual();
+        return this.fase.obtenerMapaActual(this.listaJugadores);
     }
 
     public FaseJuego faseActual(){
@@ -39,6 +39,11 @@ public class Juego extends Observable {
     public void realizarJugada(Jugada jugada){
         this.fase.realizarJugada(this.listaJugadores, jugada);
         setChanged();
+    }
+
+    public void finalizarColocacion() {
+        this.obtenerMapaActual().finalizarColocacion();
+        this.avanzarFase();
     }
 
     public void avanzarFase(){

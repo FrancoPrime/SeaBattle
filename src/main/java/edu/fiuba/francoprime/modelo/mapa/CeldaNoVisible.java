@@ -3,7 +3,7 @@ package edu.fiuba.francoprime.modelo.mapa;
 public class CeldaNoVisible implements Visibilidad{
 
     public boolean estaTocada() {
-        return true;
+        return false;
     }
 
     public String nombreVisibilidad(){
