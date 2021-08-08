@@ -47,4 +47,12 @@ public class ListaJugadores {
         return hayGanador;
     }
 
+    public Jugador jugadorGanador(){
+        if(!this.hayGanador())
+            return null;
+        if(this.jugadores.get(0).todosSusBarcosDestruidos())
+            return this.jugadores.get(1);
+        return this.jugadores.get(0);
+    }
+
 }

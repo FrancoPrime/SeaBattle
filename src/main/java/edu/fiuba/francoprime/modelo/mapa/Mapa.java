@@ -47,7 +47,7 @@ public class Mapa {
         }else{
             colocarBarcoVerticalmente(posFila, posColumna, tamanioBarco);
         }
-        if(barcoEnColocacionPosicionInvalida())
+        if(!barcoEnColocacionPosicionValida())
             asignarBarcoAPrimeraPosicionValidaHorizontal(tamanioBarco);
     }
 
@@ -66,7 +66,7 @@ public class Mapa {
         }
     }
 
-    private boolean barcoEnColocacionPosicionInvalida(){
+    private boolean barcoEnColocacionPosicionValida(){
         boolean posicionValida = true;
         for(int i=0; i < this.coordenadasBarcoEnColocacion.size(); i++){
             int posicionFila = this.coordenadasBarcoEnColocacion.get(i).getFila();
@@ -75,7 +75,7 @@ public class Mapa {
                 posicionValida = false;
             }
         }
-        return (!posicionValida);
+        return posicionValida;
     }
 
     private void colocarBarcoHorizontalmente(int posFila, int posColumna, int tamanioBarco) {
@@ -95,12 +95,12 @@ public class Mapa {
 
     private void asignarBarcoAPrimeraPosicionValidaVertical(int tamanioBarco){
         int i=0;
-        int j=0;
         boolean colocado = false;
         while(i+tamanioBarco < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+            int j=0;
             while(j < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
                 asignarCoordenadasDeColocacionVerticalmente(i, j, tamanioBarco);
-                if(!barcoEnColocacionPosicionInvalida())
+                if(barcoEnColocacionPosicionValida())
                     colocado = true;
                 j++;
             }
@@ -109,12 +109,13 @@ public class Mapa {
     }
 
     private void asignarBarcoAPrimeraPosicionValidaHorizontal(int tamanioBarco){
-        int i=0, j=0;
+        int i=0;
         boolean colocado = false;
         while(i < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
+            int j = 0;
             while(j+tamanioBarco < Mapa.MAXIMAS_FILAS_COLUMNAS && !colocado){
                 asignarCoordenadasDeColocacionHorizontalmente(i, j, tamanioBarco);
-                if(!barcoEnColocacionPosicionInvalida())
+                if(barcoEnColocacionPosicionValida())
                     colocado = true;
                 j++;
             }
@@ -131,7 +132,7 @@ public class Mapa {
     public Visibilidad visibilidadCelda(int fila, int columna){
         if(estaColocandose(fila, columna))
             return new CeldaBarcoVisible();
-        return this.celdas[fila][columna].visibilidad;
+        return this.celdas[fila][columna].obtenerVisibilidad();
     }
     
     private boolean estaColocandose(int fila, int columna){

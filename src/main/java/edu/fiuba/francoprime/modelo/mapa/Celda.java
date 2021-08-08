@@ -4,8 +4,8 @@ import edu.fiuba.francoprime.modelo.jugador.Barco;
 
 public class Celda {
 
-    ContenidoCelda contenido;
-    Visibilidad visibilidad;
+    private ContenidoCelda contenido;
+    private Visibilidad visibilidad;
 
     public Celda(){
         this.contenido = new CeldaSinBarco();
@@ -24,6 +24,10 @@ public class Celda {
             throw new CeldaOcupadaException();
         this.contenido = new CeldaConBarco(barco);
         this.visibilidad = new CeldaBarcoVisible();
+    }
+
+    public Visibilidad obtenerVisibilidad(){
+        return this.visibilidad;
     }
 
     public boolean esAsignable(){

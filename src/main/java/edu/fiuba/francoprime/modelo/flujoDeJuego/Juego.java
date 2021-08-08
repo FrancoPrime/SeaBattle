@@ -24,6 +24,10 @@ public class Juego extends Observable {
         return this.fase.obtenerMapaActual(this.listaJugadores);
     }
 
+    public Jugador jugadorGanador(){
+        return this.listaJugadores.jugadorGanador();
+    }
+
     public FaseJuego faseActual(){
         return this.fase;
     }

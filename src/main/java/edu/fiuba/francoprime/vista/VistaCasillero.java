@@ -34,6 +34,9 @@ public class VistaCasillero extends StackPane implements Observer {
             controladorVistaCasillero.realizarJugada(this.fila, this.columna);
         });
         this.getChildren().add(this.imagenCasillero);
+        Mapa mapaActual = this.juego.obtenerMapaActual();
+        Visibilidad visibilidadCasilla = mapaActual.visibilidadCelda(this.fila, this.columna);
+        this.actualizarVisibilidad(visibilidadCasilla);
     }
 
     private void inicializarImagenes() throws FileNotFoundException {
@@ -52,7 +55,7 @@ public class VistaCasillero extends StackPane implements Observer {
         this.juego = juego;
         this.fila = fila;
         this.columna = columna;
-        relocate(50+this.fila*52.8,22+this.columna*43);
+        relocate(50+this.columna*52.8,22+this.fila*43);
     }
 
     @Override
