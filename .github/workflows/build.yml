@@ -27,6 +27,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: target/seabattle.jar
+          files: target/seaBattle-0.7-shaded.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
